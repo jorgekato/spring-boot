@@ -1,2 +1,2 @@
 # spring-boot
-Criando projetos com a utilização do SpringBoot
+Criando projeto com a utilização do SpringBoot
