@@ -16,19 +16,32 @@
 	</properties>
 
 	<dependencies>
-		<!-- possui as classes para utilização do spring boot application.  -->
+		<!-- possui as classes para utilização do spring boot application. -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 			<version>${org.springframework.boot.version}</version>
 		</dependency>
-		<!-- engine de templates na nossa aplicação. Pelo padrão, ele busca as views na pasta src/main/resources/templates/ -->
+		<!-- engine de templates na nossa aplicação. Pelo padrão, ele busca as 
+			views na pasta src/main/resources/templates/ -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 			<version>${org.springframework.boot.version}</version>
 		</dependency>
-		
+		<!-- Configuração de dependencias do hibernate e jpa -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<version>${org.springframework.boot.version}</version>
+		</dependency>
+		<!-- Conector do banco de dados MySql -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.40</version>
+		</dependency>
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
