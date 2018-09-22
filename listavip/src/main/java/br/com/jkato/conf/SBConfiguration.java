@@ -3,12 +3,12 @@
  */
 package br.com.jkato.conf;
 
+import javax.sql.DataSource;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.context.annotation.Bean;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 /** 
  * DOCUMENTAÇÃO DA CLASSE <br>
@@ -24,7 +24,6 @@ import org.springframework.web.servlet.ModelAndView;
  */
 
 @SpringBootApplication
-@Controller
 public class SBConfiguration {
 
     /** 
@@ -36,10 +35,20 @@ public class SBConfiguration {
         SpringApplication.run( SBConfiguration.class , args );
     }
     
-    @RequestMapping("/")
-    public ModelAndView index() {
-        ModelAndView modelAndView = new ModelAndView("index");
-        return modelAndView;
+    /**
+     * 
+     * Método que configura um data source mysql para a aplicação.
+     * @return
+     */
+    @Bean
+    public DataSource dataSource() {
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName( "com.mysql.jdbc.Driver" );
+        dataSource.setUrl( "jdbc:mysql://localhost:3306/listavip" );
+        dataSource.setUsername( "root" );
+        dataSource.setPassword( "" );
+        
+        return dataSource;
     }
-
+    
 }
