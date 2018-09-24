@@ -6,6 +6,8 @@ package br.com.jkato.conf;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.jkato.conf.model.Convidado;
@@ -52,6 +54,27 @@ public class ConvidadoController {
         ModelAndView modelAndView = new ModelAndView( "listaconvidados" );
         modelAndView.addObject( "convidados" , convidados );
         
+        return modelAndView;
+    }
+    
+    /**
+     * 
+     * Método que cadastra um novo convidado.
+     * @param nome
+     * @param email
+     * @param telefone
+     * @return
+     */
+    @RequestMapping ( value = "salvar" , method = RequestMethod.POST )
+    public ModelAndView salvar ( @RequestParam ( "nome" ) String nome , @RequestParam ( "email" ) String email , @RequestParam ( "telefone" ) String telefone ) {
+
+        Convidado novoConvidado = new Convidado( nome , email , telefone );
+        repository.save( novoConvidado );
+
+        ModelAndView modelAndView = new ModelAndView( "listaconvidados" );
+        Iterable < Convidado > convidados = repository.findAll();
+        modelAndView.addObject( "convidados" , convidados );
+
         return modelAndView;
     }
 
