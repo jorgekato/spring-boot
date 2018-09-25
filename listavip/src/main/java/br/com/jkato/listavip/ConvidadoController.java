@@ -1,7 +1,7 @@
 /**
  * 
  */
-package br.com.jkato.conf;
+package br.com.jkato.listavip;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,8 +10,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.jkato.conf.model.Convidado;
-import br.com.jkato.conf.repository.ConvidadoRepository;
+import br.com.jkato.enviadorEmail.service.EmailService;
+import br.com.jkato.listavip.model.Convidado;
+import br.com.jkato.listavip.service.ConvidadoService;
        
 /**
  * DOCUMENTAÇÃO DA CLASSE <br>
@@ -28,10 +29,9 @@ import br.com.jkato.conf.repository.ConvidadoRepository;
 @Controller
 public class ConvidadoController {
     
-
     @Autowired
-    private ConvidadoRepository repository;
-
+    ConvidadoService service;
+    
     /**
      * 
      * Método que mapeia a url / para index.html
@@ -49,7 +49,7 @@ public class ConvidadoController {
      */
     @RequestMapping ( "listaconvidados" )
     public ModelAndView listaconvidados () {
-        Iterable < Convidado > convidados = repository.findAll();
+        Iterable < Convidado > convidados = service.findAll();
         
         ModelAndView modelAndView = new ModelAndView( "listaconvidados" );
         modelAndView.addObject( "convidados" , convidados );
@@ -68,14 +68,22 @@ public class ConvidadoController {
     @RequestMapping ( value = "salvar" , method = RequestMethod.POST )
     public ModelAndView salvar ( @RequestParam ( "nome" ) String nome , @RequestParam ( "email" ) String email , @RequestParam ( "telefone" ) String telefone ) {
 
-        Convidado novoConvidado = new Convidado( nome , email , telefone );
-        repository.save( novoConvidado );
+        try {
+            Convidado novoConvidado = new Convidado( nome , email , telefone );
+            service.save( novoConvidado );
+            
+            new EmailService().sendMail( nome , email );
+    
+            ModelAndView modelAndView = new ModelAndView( "listaconvidados" );
+            Iterable < Convidado > convidados = service.findAll();
+            modelAndView.addObject( "convidados" , convidados );
+            
+            return modelAndView;
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+        return null;
 
-        ModelAndView modelAndView = new ModelAndView( "listaconvidados" );
-        Iterable < Convidado > convidados = repository.findAll();
-        modelAndView.addObject( "convidados" , convidados );
-
-        return modelAndView;
     }
 
 }

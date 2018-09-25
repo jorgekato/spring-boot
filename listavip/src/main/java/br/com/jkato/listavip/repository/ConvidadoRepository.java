@@ -1,11 +1,11 @@
 /**
  * 
  */
-package br.com.jkato.conf.repository;
+package br.com.jkato.listavip.repository;
 
 import org.springframework.data.repository.CrudRepository;
 
-import br.com.jkato.conf.model.Convidado;
+import br.com.jkato.listavip.model.Convidado;
 
 /** 
  * DOCUMENTAÇÃO DA CLASSE <br>

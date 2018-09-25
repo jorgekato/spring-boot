@@ -1,7 +1,7 @@
 /**
  * 
  */
-package br.com.jkato.conf.model;
+package br.com.jkato.listavip.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
