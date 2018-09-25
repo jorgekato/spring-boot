@@ -1,7 +1,7 @@
 /**
  * 
  */
-package br.com.jkato.conf;
+package br.com.jkato.listavip;
 
 import javax.sql.DataSource;
 

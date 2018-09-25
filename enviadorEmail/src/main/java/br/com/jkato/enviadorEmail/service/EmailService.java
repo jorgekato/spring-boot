@@ -26,11 +26,11 @@ import org.springframework.stereotype.Service;
 public class EmailService {
 
     private static final int PORT = 465;
-    private static final String HOST_NAME= "stmp.googlemail.com";
+    private static final String HOST_NAME= "smtp.googlemail.com";
     private static final String USER_MAIL = "jkato2012@gmail.com";
-    private static final String PASSWORD = "$2a$10$tEKp1mcLFRV/v/i1zS.h5uwOsauRMLOY/BpDqk3l.YNpczMzIRI22";
-    private static final String FROM = "jkato2012@gmail.com";
-    private static final String SUBJECT = "Convite Lista Vip";
+    private static final String PASSWORD = "";//inserir a senha da conta.
+    private static final String FROM = "jkato2012@gmail.com";//utilizar o email corporativo.
+    private static final String SUBJECT = "Convite Lista Vip!(NÃO RESPONDER)";
 
     
     /**
