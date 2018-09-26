@@ -3,12 +3,8 @@
  */
 package br.com.jkato.listavip;
 
-import javax.sql.DataSource;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 /** 
  * DOCUMENTAÇÃO DA CLASSE <br>
