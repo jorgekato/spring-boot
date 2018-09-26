@@ -34,6 +34,12 @@
 			<artifactId>spring-boot-starter-jetty</artifactId>
 			<version>${org.springframework.boot.version}</version>
 		</dependency>
+		<!-- análise posterior. -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+			<version>${org.springframework.boot.version}</version>
+		</dependency>
 		<!-- engine de templates na nossa aplicação. Pelo padrão, ele busca as 
 			views na pasta src/main/resources/templates/ -->
 		<dependency>
@@ -80,4 +86,23 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+	
+	<build>
+		<plugins>
+		<!-- Regra de como será feito o empacotamento.  -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>${org.springframework.boot.version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+	
 </project>
